@@ -5,6 +5,8 @@ public class PlayerController : MonoBehaviour
     public float speed = 15.0f;
     private float horizontalInput;
     private Rigidbody playerRB;
+    private float leftLimit = -13.0f;
+    private float rightLimit = 13.0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,13 +29,13 @@ public class PlayerController : MonoBehaviour
 
     void limitPlayerMovement()
     {
-        if (transform.position.x < -13)
+        if (transform.position.x < leftLimit)
         {
-            transform.position = new Vector3(-13, 0, -5);
+            transform.position = new Vector3(leftLimit, transform.position.y, transform.position.z);
         }
-        else if (transform.position.x > 13)
+        else if (transform.position.x > rightLimit)
         {
-            transform.position = new Vector3(13, 0, -5);
+            transform.position = new Vector3(rightLimit, transform.position.y, transform.position.z);
         }
     }
 
